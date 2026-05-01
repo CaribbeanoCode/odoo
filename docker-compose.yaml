@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   odoo:
-    build: .
+    image: odoo:17.0  # On utilise l'image officielle au lieu de "build: ."
     depends_on:
       - db
     ports:
@@ -11,13 +11,13 @@ services:
     environment:
       - HOST=db
       - USER=odoo
-      - PASSWORD=ton_mot_de_passe_securise
+      - PASSWORD=odoo_password_incroyable
 
   db:
     image: postgres:15
     environment:
       - POSTGRES_DB=postgres
-      - POSTGRES_PASSWORD=ton_mot_de_passe_securise
+      - POSTGRES_PASSWORD=odoo_password_incroyable
       - POSTGRES_USER=odoo
     volumes:
       - odoo-db-data:/var/lib/postgresql/data
